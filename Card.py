@@ -1,10 +1,10 @@
 import turtle
 import time
 
-# Create a wn object
+# Create a wn object (window)
 wn = turtle.Screen()
 
-# Set the wn to fullwn
+# Set the wn to full-screen (maximize)
 wn.setup(width=wn.window_width(), height=wn.window_height())
 wn.title("Fade Transition with Solid Colors")
 
@@ -14,8 +14,8 @@ new_color = "lightblue"
 fade_color = "black"
 
 # Function to simulate a fade transition from one color to another
-def fade_transition(from_color, to_color, steps= 6):
-    # Convert color names to RGB values using a turtle helper
+def fade_transition(from_color, to_color, steps=6):
+    # Convert color names to RGB values
     def color_to_rgb(color):
         if color == "black":
             return (0, 0, 0)
@@ -50,13 +50,16 @@ def fade_transition(from_color, to_color, steps= 6):
 def change_color(x, y):
     wn_width = wn.window_width()
     
-    # First, fade to black
-    fade_transition(wn.bgcolor(), fade_color)
+    # Define left and right half boundaries
+    left_boundary = -wn_width / 2
+    right_boundary = wn_width / 2
     
-    # If the click is on the right half of the wn, change to new color
-    if x > 0:
+    # Only fade to black if clicked on the left or right side
+    if x > right_boundary / 1.3:  # Right half of the screen
+        fade_transition(wn.bgcolor(), fade_color)
         fade_transition(fade_color, new_color)
-    else:
+    elif x < left_boundary / 1.3:  # Left half of the screen
+        fade_transition(wn.bgcolor(), fade_color)
         fade_transition(fade_color, original_color)
 
 # Set the initial background to the original color
@@ -65,4 +68,5 @@ wn.bgcolor(original_color)
 # Bind the click event (clicking anywhere on the wn)
 wn.onclick(change_color)
 
+# Main loop
 wn.mainloop()
