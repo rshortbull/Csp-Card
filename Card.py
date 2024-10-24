@@ -13,6 +13,48 @@ wn.register_shape("cow.gif")
 wn.addshape("ufo.gif")
 wn.addshape("ufobeam.gif")
 
+# sets up sign
+sign = turtle.Turtle()
+sign.fillcolor("black")
+sign.speed(0)
+sign.pensize(5)
+sign.pencolor("orange")
+sign.begin_fill()
+sign.penup()
+sign.goto(-950, 520)
+sign.pendown()
+
+
+
+
+# creates sign
+for rectangle in range(2):
+    sign.forward(270)
+    sign.right(90)
+    sign.forward(150)
+    sign.right(90)
+sign.end_fill()
+
+
+
+
+sign.penup()
+sign.goto(-933, 400)
+sign.pendown()
+sign.color('orange')
+style = ('Times New Roman', 13, 'normal')
+sign.write(
+    'Instructions: \n'
+    '1. Click around to explore \n'
+    'the area.\n'
+    '2. After all has been clicked, \n'
+    'click the right side to the next scene.',
+    font=style)
+sign.hideturtle()
+
+
+
+
 
 cow = turtle.Turtle()
 cow.speed(0)
@@ -51,6 +93,44 @@ def move_ufo(x, y):
     ufo.goto(500, 500)
     ufo.hideturtle() 
 
+def move_sign():
+    # sets up sign
+    sign = turtle.Turtle()
+    sign.fillcolor("black")
+    sign.speed(0)
+    sign.pensize(5)
+    sign.pencolor("green")
+    sign.begin_fill()
+    sign.penup()
+    sign.pendown()
+
+
+    # creates sign
+    for rectangle in range(2):
+        sign.forward(970)
+        sign.right(90)
+        sign.forward(550)
+        sign.right(90)
+    sign.end_fill()
+
+
+    sign.penup()
+    sign.goto(-360, -40)
+    sign.pendown()
+    sign.color('Green')
+    style = ('Times New Roman', 50, 'normal')
+    sign.write(
+        'HAPPY ALIEN ABDUCTION \n'
+        '                  DAY!!',
+        font=style)
+
+    sign.goto(-450, -300)
+    sign.goto(-450, 300)
+
+
+
+
+
 # Bind the cow turtle to respond to clicks
 cow.onclick(move_ufo)
 
@@ -75,3 +155,5 @@ wn.onclick(change_color)
 
 # Main loop
 wn.mainloop()
+
+
